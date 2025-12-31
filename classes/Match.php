@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once "../config/databases.php";
-class  matche extends connection{
+
+class matche extends connection {
 
     protected $id;
     protected $equipe1;
@@ -9,7 +10,7 @@ class  matche extends connection{
     protected $date;
     protected $location;
 
-    public function __construct($id,$equipe1,$equipe2,$date,$location)
+    public function __construct($id, $equipe1, $equipe2, $date, $location)
     {
         $this->id = $id;
         $this->equipe1 = $equipe1;
@@ -17,24 +18,32 @@ class  matche extends connection{
         $this->date = $date;
         $this->location = $location;
     }
-    ////////////////////////
- public function getId()
+
+    public function getId()
     {
         return $this->id;
     }
- public function getEquipe1()
+
+    public function getEquipe1()
     {
-        return $this->id;
-    } public function getEquipe2()
-    {
-        return $this->id;
-    } public function getDate()
-    {
-        return $this->id;
-    } public function getLocation()
-    {
-        return $this->id;
+        return $this->equipe1;
     }
+
+    public function getEquipe2()
+    {
+        return $this->equipe2;
+    }
+
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
     public function setId($id)
     {
         $this->id = $id;
@@ -54,24 +63,23 @@ class  matche extends connection{
     {
         $this->date = $date;
     }
+
     public function setLocation($location)
     {
         $this->location = $location;
     }
 
-///////////////////////////
-
-    public function afficherMatch(){
-
+    public function afficherMatch()
+    {
     }
 
-    public function afficherComment(){
-
+    public function afficherComment()
+    {
     }
-
-    ///////////////////caltegori
 }
-
-     class categorie {
-    }
+/////////////////
+//categorie
+////////////////
+class categorie {
+}
 ?>
