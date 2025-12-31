@@ -8,7 +8,7 @@ abstract class users extends connection{
     protected $email;
     protected $role;
     protected $photo;
-    protected $password;
+    private $password;
     public function __construct($id, $nom, $prenom, $email, $role,$photo, $password)
     {
         $this->id = $id;

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-class connection{
+abstract class connection{
     private $host = "localhost";
     private $user = "coachuser";
     private $password = "strongpassword";
