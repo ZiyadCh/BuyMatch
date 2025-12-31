@@ -35,6 +35,29 @@ class  matche extends connection{
     {
         return $this->id;
     }
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function setEquipe1($equipe1)
+    {
+        $this->equipe1 = $equipe1;
+    }
+
+    public function setEquipe2($equipe2)
+    {
+        $this->equipe2 = $equipe2;
+    }
+
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+    public function setLocation($location)
+    {
+        $this->location = $location;
+    }
 
 ///////////////////////////
 
@@ -45,5 +68,10 @@ class  matche extends connection{
     public function afficherComment(){
 
     }
+
+    ///////////////////caltegori
 }
+
+     class categorie {
+    }
 ?>

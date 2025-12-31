@@ -70,7 +70,9 @@ abstract class users extends connection{
     {
         $this->password = $password;
     }
+    ////////////////////////////////////
     //insert into mysql
+    ///////////////////////////////////
     public function signup()
     {
         $pdo = $this->connect();
