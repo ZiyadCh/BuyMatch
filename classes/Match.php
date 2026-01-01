@@ -76,10 +76,9 @@ class matche extends connection {
     public function afficherComment()
     {
     }
+    
 }
-/////////////////
-//categorie
-////////////////
-class categorie {
+class categorie{
+ 
 }
 ?>

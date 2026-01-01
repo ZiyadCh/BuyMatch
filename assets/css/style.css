@@ -6,10 +6,11 @@ body {
 }
 
 .navbar {
-    background-color: rgba(255 255 255/.75);
+    background-color: rgba(255 255 255);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: 98;
+    position: absolute;
 }
 
 .carousel {
