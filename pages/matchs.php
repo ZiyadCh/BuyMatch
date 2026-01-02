@@ -1,308 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <title>Reel Verse</title>
-    <style>
-      :root {
-        --primary: #e50914; /* Netflix-inspired red */
-        --dark: #141414;
-        --light: #f8f9fa;
-        --text: #ffffff;
-        --accent: #ff6b6b;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MatchTicket Pro - Sports Events Platform</title>
 
-      body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #000;
-        color: var(--text);
-      }
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-      .navbar {
-        background-color: rgba(20, 20, 20, 0.95) !important;
-        backdrop-filter: blur(10px);
-        padding: 1rem 0;
-        z-index: 1000;
-      }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 
-      .navbar-brand {
-        font-family: 'Playfair Display', serif;
-        font-size: 2rem;
-        color: var(--primary) !important;
-        font-weight: 700;
-      }
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
 
-      .nav-link {
-        color: var(--text) !important;
-        font-weight: 500;
-        margin: 0 1rem;
-        transition: color 0.3s;
-      }
+</head>
+<body>
 
-      .nav-link:hover, .nav-link.active {
-        color: var(--primary) !important;
-      }
-
-      /* Hero Section (Slider replacement) */
-      .hero {
-        height: 100vh;
-        min-height: 600px;
-        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://via.placeholder.com/1920x1080?text=Featured+Movie+Poster') center/cover no-repeat;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
-
-      .hero h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: 4.5rem;
-        color: var(--text);
-      }
-
-      .hero p {
-        font-size: 1.5rem;
-        max-width: 800px;
-        margin: 1rem auto;
-      }
-
-      .btn-primary-custom {
-        background-color: var(--primary);
-        border: none;
-        padding: 0.8rem 2rem;
-        font-weight: 600;
-        border-radius: 5px;
-        transition: background 0.3s;
-      }
-
-      .btn-primary-custom:hover {
-        background-color: var(--accent);
-      }
-
-      section {
-        padding: 5rem 0;
-      }
-
-      .section-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 2.5rem;
-        margin-bottom: 3rem;
-        text-align: center;
-        color: var(--primary);
-      }
-
-      .movie-card {
-        background-color: #1e1e1e;
-        border: none;
-        border-radius: 12px;
-        overflow: hidden;
-        transition: transform 0.4s, box-shadow 0.4s;
-      }
-
-      .movie-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(229, 9, 20, 0.4);
-      }
-
-      .movie-poster {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .movie-poster img {
-        transition: transform 0.5s;
-      }
-
-      .movie-card:hover .movie-poster img {
-        transform: scale(1.1);
-      }
-
-      .card-body {
-        padding: 1.5rem;
-      }
-
-      .movie-title {
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-      }
-
-      .movie-price {
-        color: var(--primary);
-        font-weight: 700;
-        font-size: 1.3rem;
-      }
-
-      .book-ticket {
-        background-color: var(--primary);
-        border: none;
-        width: 100%;
-        padding: 0.8rem;
-        font-weight: 600;
-      }
-
-      .book-ticket:hover {
-        background-color: var(--accent);
-      }
-
-      /* Modal */
-      .modal-window {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: #1e1e1e;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        z-index: 2000;
-        max-width: 400px;
-        width: 90%;
-        text-align: center;
-      }
-
-      .modal-window.active {
-        display: block;
-      }
-
-      .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        font-size: 2rem;
-        cursor: pointer;
-        color: #fff;
-      }
-
-      footer {
-        background-color: var(--dark);
-        padding: 3rem 0;
-        text-align: center;
-        font-size: 0.9rem;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-          <a class="navbar-brand" href="#">Reel Verse</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarContent"
-            aria-controls="navbarContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">In Cinemas Now</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Trending</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Subscribe</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-      <!-- Hero Section -->
-      <div class="hero">
-        <div>
-          <h1>Featured Movie Title</h1>
-          <p>Experience the ultimate cinematic adventure in theaters now.</p>
-          <button class="btn btn-primary-custom">Book Tickets</button>
+  <!-- Navbar with Login/Signup -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">BUYMATCH</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Matches</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+        <div class="d-flex gap-3">
+          <a href="../auth/login.php" class="btn btn-login">Login</a>
+          <a href="../auth/register.php" class="btn btn-signup">Sign Up</a>
         </div>
       </div>
-    </header>
+    </div>
+  </nav>
 
-    <main>
-      <!-- In Cinemas Now -->
-      <section class="bg-black">
-        <div class="container">
-          <h2 class="section-title">In Cinemas Now</h2>
-          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-            <!-- Movie cards will be added dynamically or statically -->
-            <div class="col">
-              <div class="card movie-card h-100">
-                <div class="movie-poster">
-                  <img src="../assets/images/post-1.jpg" class="w-100" alt="Movie Poster">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>DISCOVER EPIC SPORTS MATCHES</h1>
+      <p>Buy tickets to the biggest games, secure your seat, and live the passion. Login required to purchase.</p>
+      <a href="#matches" class="btn btn-signup btn-lg">Browse Matches</a>
+    </div>
+  </section>
+
+  <!-- Matches Section -->
+  <section id="matches">
+    <div class="container">
+      <h2 class="section-title">Upcoming Matches</h2>
+
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
+        <!-- Match 1: Real Madrid vs Barcelona -->
+        <div class="col">
+          <div class="card match-card h-100">
+            <div class="match-banner">
+              <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/match-day-real-madrid-vs-barcelona-el-classic-design-template-740574d9dd3dac8024c5132959a38c2c_screen.jpg?ts=1722616259" alt="El Clasico Banner">
+            </div>
+            <div class="card-body text-center py-5">
+              <div class="d-flex align-items-center justify-content-center gap-4 mb-4">
+                <div class="text-center">
+                  <img src="https://www.nicepng.com/png/detail/245-2457966_tap-to-expand-real-madrid-is-logo-download.png" class="team-logo" alt="Real Madrid">
+                  <h5 class="mt-3 fw-bold" data-team1="Real Madrid">Real Madrid</h5>
                 </div>
-                <div class="card-body">
-                  <h5 class="movie-title fw-bold">Movie Title <small>(Year)</small></h5>
-                  <p class="movie-price">9900 ৳</p>
-                  <button class="btn book-ticket">Book Ticket</button>
+                <div class="vs-display"><span>VS</span></div>
+                <div class="text-center">
+                  <img src="https://www.nicepng.com/png/detail/139-1398411_free-png-barcelona-logo-png-images-transparent-fc.png" class="team-logo" alt="Barcelona">
+                  <h5 class="mt-3 fw-bold" data-team2="FC Barcelona">FC Barcelona</h5>
                 </div>
               </div>
+              <p class="text-muted fw-bold" data-date="January 15, 2026">January 15, 2026</p>
+              <p class="text-muted" data-location="Santiago Bernabéu, Madrid">Santiago Bernabéu</p>
+              <button class="btn book-ticket w-100 mt-4">Buy Ticket</button>
             </div>
-<div class="col">
-              <div class="card movie-card h-100">
-                <div class="movie-poster">
-                  <img src="../assets/images/post-1.jpg" class="w-100" alt="Movie Poster">
+          </div>
+        </div>
+
+        <!-- Match 2: Manchester United vs Liverpool -->
+        <div class="col">
+          <div class="card match-card h-100">
+            <div class="match-banner">
+              <img src="https://i.ytimg.com/vi/tnAiNn8lkws/maxresdefault.jpg" alt="Man Utd vs Liverpool Banner">
+            </div>
+            <div class="card-body text-center py-5">
+              <div class="d-flex align-items-center justify-content-center gap-4 mb-4">
+                <div class="text-center">
+                  <img src="https://www.pngarts.com/files/2/Manchester-United-PNG-Transparent-Image.png" class="team-logo" alt="Man United">
+                  <h5 class="mt-3 fw-bold" data-team1="Manchester United">Man United</h5>
                 </div>
-                <div class="card-body">
-                  <h5 class="movie-title fw-bold">Movie wef <small>(Year)</small></h5>
-                  <p class="movie-price">000 ৳</p>
-                  <button class="btn book-ticket">Book Ticket</button>
+                <div class="vs-display"><span>VS</span></div>
+                <div class="text-center">
+                  <img src="https://www.clipartmax.com/png/middle/197-1977848_liverpool-logo-vector-liverpool-fc.png" class="team-logo" alt="Liverpool">
+                  <h5 class="mt-3 fw-bold" data-team2="Liverpool FC">Liverpool</h5>
                 </div>
               </div>
+              <p class="text-muted fw-bold" data-date="March 8, 2026">March 8, 2026</p>
+              <p class="text-muted" data-location="Old Trafford, Manchester">Old Trafford</p>
+              <button class="btn book-ticket w-100 mt-4">Buy Ticket</button>
             </div>
-            <!-- Repeat more cards as needed -->
           </div>
         </div>
-      </section>
 
-      <!-- Trending Now -->
-      <section class="bg-dark">
-        <div class="container">
-          <h2 class="section-title">Trending Now</h2>
-          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-            <!-- Similar movie cards -->
-          </div>
-        </div>
-      </section>
-    </main>
+        <!-- Add more matches here -->
+      </div>
+    </div>
+  </section>
 
-    <!-- Modal Window -->
-    
-<div class="modal-window">
-  <span class="close-btn">X</span>
-  <h2 class="fw-bold">Movie Title (Year)</h2>
-  
-  <div class="mt-4">
-    <label for="seat-type" class="form-label fw-bold">Categorie</label>
-    <select class="form-select form-select-lg" id="seat-type">
-      <option value="normal" selected>Normal</option>
-      <option value="vip">VIP</option>
-    </select>
-  </div>
-
-  <button class="btn btn-danger fw-bold mt-4 buy-now w-100">BUY NOW</button>
-</div>
-    <footer>
-      <p>&copy; 2026 Reel Verse. All rights reserved.</p>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!-- Custom JS (for modal example) -->
-  <script src="../assets/js/script.js"></script> 
-  </body>
+  <!-- Premium Modal -->
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/script.js"></script>
+</body>
 </html>
