@@ -12,7 +12,7 @@
     :root { --primary: #00ff9d; --dark: #0a0a0a; --card-bg: #161616; }
     body {
       background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)),
-                  url('https://png.pngtree.com/thumb_back/fh260/background/20241112/pngtree-a-large-cricket-stadium-green-field-empty-image_16550057.jpg') center/cover no-repeat fixed;
+                  url('https://img.freepik.com/premium-photo/soccer-stadium-field-soccer-background_1024307-601.jpg') center/cover no-repeat fixed;
       min-height: 100vh;
       font-family: 'Poppins', sans-serif;
     }
@@ -36,14 +36,21 @@
       font-size: 3rem;
       color: var(--primary);
     }
-    .form-select {
+    .form-select, .form-control {
       background-color: #222;
       border-color: #444;
       color: #fff;
     }
-    .form-select:focus {
+    .form-select:focus, .form-control:focus {
       border-color: var(--primary);
       box-shadow: 0 0 0 0.25rem rgba(0, 255, 157, 0.25);
+    }
+    #profile-preview {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--primary);
     }
   </style>
 </head>
@@ -54,7 +61,18 @@
       <p>Rejoignez BuyMatch et réservez vos événements sportifs !</p>
     </div>
 
-    <form action="./register.process.php" method="POST">
+    <form action="register.process.php" method="POST">
+      <!-- Photo de profil (lien URL) -->
+      <div class="text-center mb-4">
+        <img src="https://via.placeholder.com/120?text=Avatar"  id="profile-preview" alt="Aperçu photo de profil">
+        <div class="mt-3">
+          <label for="profile_url" class="form-label text-light">Lien vers votre photo de profil (URL)</label>
+          <input type="url" class="form-control form-control-lg" id="profile_url" name="pfp" 
+                 placeholder="https://example.com/ma-photo.jpg" value="">
+          <small class="text-muted">Collez un lien direct vers une image (optionnel)</small>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-md-6 mb-3">
           <label for="prenom" class="form-label text-light">Prénom</label>
@@ -76,12 +94,11 @@
         <input type="password" class="form-control form-control-lg" id="password" name="password" required>
       </div>
 
-      <!-- Select simple pour le rôle -->
       <div class="mb-4">
         <label for="role" class="form-label text-light fw-bold">Type de compte</label>
         <select class="form-select form-select-lg" id="role" name="role" required>
-          <option value="client" selected>Client (Acheteur de billets)</option>
-          <option value="organisateur">Organisateur d'événements</option>
+          <option value="client" selected>client </option>
+          <option value="organisateur">organisateur </option>
         </select>
       </div>
 
@@ -93,6 +110,25 @@
       <a href="../index.php" class="text-muted"><i class="bi bi-arrow-left"></i> Retour à l'accueil</a>
     </div>
   </div>
+
+  <script>
+    // Aperçu en temps réel de la photo de profil
+    const profileInput = document.getElementById('profile_url');
+    const previewImg = document.getElementById('profile-preview');
+
+    profileInput.addEventListener('input', function() {
+      const url = this.value.trim();
+      if (url) {
+        // Test temporaire si l'URL semble être une image
+        const img = new Image();
+        img.onload = () => previewImg.src = url;
+        img.onerror = () => previewImg.src = 'https://via.placeholder.com/120?text=Invalid';
+        img.src = url;
+      } else {
+        previewImg.src = 'https://via.placeholder.com/120?text=Avatar';
+      }
+    });
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

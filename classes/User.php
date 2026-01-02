@@ -1,5 +1,5 @@
 <?php 
-require_once "../config/databases.php";
+require_once "../config/database.php";
 abstract class users extends connection{
     
     protected $id;
@@ -10,7 +10,7 @@ abstract class users extends connection{
     protected $photo;
     private $password;
     
-    public function __construct($id, $nom, $prenom, $email, $role,$photo, $password)
+    public function __construct($id, $nom, $prenom, $email,$photo, $role, $password)
     {
         $this->id = $id;
         $this->nom = $nom;
@@ -109,6 +109,7 @@ abstract class users extends connection{
      
     }
  
+    //////////////////////
         //login
     public function login($emailCheck, $passCheck)
     {
