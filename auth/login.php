@@ -22,7 +22,7 @@
       <h2>Connexion</h2>
       <p>Bienvenue sur BuyMatch – Réservez vos billets sportifs !</p>
     </div>
-    <form action="traitement_login.php" method="POST">
+  <form action="login.process.php" method="POST">
       <div class="mb-3">
         <label for="email" class="form-label text-light">Email</label>
         <input type="email" class="form-control form-control-lg" id="email" name="email" required>
@@ -34,7 +34,7 @@
       <button type="submit" class="btn btn-primary w-100 btn-lg">Se connecter</button>
     </form>
     <div class="text-center mt-4">
-      <p class="text-muted">Pas de compte ? <a href="signup.php" class="text-primary">Inscrivez-vous</a></p>
+      <p class="text-muted">Pas de compte ? <a href="register.php" class="text-primary">Inscrivez-vous</a></p>
       <a href="../index.php" class="text-muted"><i class="bi bi-arrow-left"></i> Retour à l'accueil</a>
     </div>
   </div>

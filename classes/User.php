@@ -124,7 +124,6 @@ abstract class users extends connection{
             $id = $row['id'];
             $emails = $row['email'];
             $role = $row['role'];
-            $photo = $row['photo'];
             $nom = $row['nom'];
             $prenom = $row['prenom'];
             $pass = $row['password'];
@@ -134,19 +133,19 @@ abstract class users extends connection{
             //password validaiton
             if (password_verify($passCheck,$pass) ) {
                 //check role
-                if ($role == 'sportif') {
+                if ($role == 'client') {
                     //sesion
                     $_SESSION['id'] = $id; 
                     $_SESSION['nom'] = $nom;
                     $_SESSION['prenom'] = $prenom;
-                    header("location: ../pages/dashboard.sportif.php");
+                    header("location: ../pages/matchs.php");
                     exit();
-                } elseif ($role == 'coach') {
+                } elseif ($role == 'organisateur') {
                     //sesion
                    $_SESSION['id'] = $id; 
                     $_SESSION['nom'] = $nom;
                     $_SESSION['prenom'] = $prenom;
-                    header("location: ../pages/dashboard.coach.php");
+                    header("location: ../pages/matchs.php");
                     exit();
                 }
             } else {

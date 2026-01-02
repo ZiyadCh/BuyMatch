@@ -6,20 +6,20 @@ require_once "../classes/User.php";
 require_once "../classes/Organisateur.php";
 require_once "../classes/Acheteur.php";
 session_start();
-$nom = $_POST['nom'];
-$prenom = $_POST['prenom'];
-$role = $_POST['role'];
 $_SESSION['nom'] = $nom;
 $_SESSION['prenom'] = $prenom;
 //check role
 if ($role == 'client') {
 
     $client = new acheteur(null,$_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['pfp'],'organisateur',$_POST['password']);
-    $client->signup();
+    $user_id =$client->signup();
+    $client->insertId($user_id);
+
 }
 elseif ($role == 'organisateur'){
     $organisateur = new organisateur(null,$_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['pfp'],'organisateur',$_POST['password']);
-    $organisateur->signup();
+   $user_id =  $organisateur->signup();
+     $organisateur->insertId($user_id);
 }
 
 ?>
