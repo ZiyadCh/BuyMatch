@@ -1,9 +1,13 @@
+<?php 
+session_start();
+echo $_SESSION['nom'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MatchTicket Pro - Sports Events Platform</title>
+  <title>Daschboard</title>
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -43,9 +47,8 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <h1>DISCOVER EPIC SPORTS MATCHES</h1>
-      <p>Buy tickets to the biggest games, secure your seat, and live the passion. Login required to purchase.</p>
-      <a href="#matches" class="btn btn-signup btn-lg">Browse Matches</a>
+      <h1><?php echo $_SESSION['nom']  ?></h1>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam quia impedit rem nisi omnis repellat, provident voluptatem odio veniam, animi, vitae ratione minima quae tempore inventore laborum labore reiciendis non!</p>
     </div>
   </section>
 
