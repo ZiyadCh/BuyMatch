@@ -146,7 +146,7 @@ abstract class users extends connection{
                    $_SESSION['id'] = $id; 
                     $_SESSION['nom'] = $nom;
                     $_SESSION['prenom'] = $prenom;
-                    header("location: ../pages/matchs.php");
+                    header("location: ../pages/orga.home.php");
                     exit();
                 }
             } else {

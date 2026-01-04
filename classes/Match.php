@@ -78,7 +78,4 @@ class matche extends connection {
     }
     
 }
-class categorie{
- 
-}
 ?>

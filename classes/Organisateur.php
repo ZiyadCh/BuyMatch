@@ -13,7 +13,12 @@ class  organisateur extends users{
     }
 
     public function demanderMatch(){
-
+        $pdo = $this->connect();
+        $sql = "INSERT INTO matches (equipe1) VALUES (:user_id)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':user_id' => $userId
+        ]);
     }
 
 }
