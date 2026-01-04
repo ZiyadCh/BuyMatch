@@ -1,8 +1,9 @@
-<?php 
+<?php
 session_start();
 require_once "../config/database.php";
-abstract class users extends connection{
-    
+abstract class users extends connection
+{
+
     protected $id;
     protected $nom;
     protected $prenom;
@@ -10,8 +11,8 @@ abstract class users extends connection{
     protected $role;
     protected $photo;
     private $password;
-    
-    public function __construct($id, $nom, $prenom, $email,$photo, $role, $password)
+
+    public function __construct($id, $nom, $prenom, $email, $photo, $role, $password)
     {
         $this->id = $id;
         $this->nom = $nom;
@@ -21,7 +22,7 @@ abstract class users extends connection{
         $this->photo = $photo;
         $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
-        //getters
+    //getters
     public function getId()
     {
         return $this->id;
@@ -55,7 +56,7 @@ abstract class users extends connection{
     {
         $this->prenom = $prenom;
     }
-       public function setPhoto($prenom)
+    public function setPhoto($prenom)
     {
         $this->prenom = $prenom;
     }
@@ -101,17 +102,17 @@ abstract class users extends connection{
             ':password' => $this->password
         ]);
 
-        $userId = $pdo->lastInsertId(); 
-    if (!$userId) {
-        throw new Exception("User insert failed");
+        $userId = $pdo->lastInsertId();
+        if (!$userId) {
+            throw new Exception("User insert failed");
+        }
+
+        return (int)$userId;
     }
 
-    return (int)$userId; 
-     
-    }
- 
     //////////////////////
-        //login
+    //login
+    //////////////////////
     public function login($emailCheck, $passCheck)
     {
         $sql = "select * from users where email = :email";
@@ -131,36 +132,34 @@ abstract class users extends connection{
         }
 
         if ($emailCheck === $emails) {
-            //password validaiton
-            if (password_verify($passCheck,$pass) ) {
-                //check role
+            if (password_verify($passCheck, $pass)) {
                 if ($role == 'client') {
-                    //sesion
-                    $_SESSION['id'] = $id; 
+                    $_SESSION['id'] = $id;
                     $_SESSION['nom'] = $nom;
                     $_SESSION['prenom'] = $prenom;
                     header("location: ../pages/matchs.php");
                     exit();
                 } elseif ($role == 'organisateur') {
-                    //sesion
-                   $_SESSION['id'] = $id; 
+                    $_SESSION['id'] = $id;
                     $_SESSION['nom'] = $nom;
                     $_SESSION['prenom'] = $prenom;
                     header("location: ../pages/orga.home.php");
+                    exit();
+                } elseif ($role == 'admin') {
+                    $_SESSION['id'] = $id;
+                    $_SESSION['nom'] = $nom;
+                    $_SESSION['prenom'] = $prenom;
+                    header("location: ../admin/dashboard.php");
                     exit();
                 }
             } else {
                 echo "not";
             }
-        }
-        else {
+        } else {
             echo "email n'existe pas";
         }
     }
 
     //gerer profile
-    public function modifierProfile(){
-
-    }
+    public function modifierProfile() {}
 }
-?>
