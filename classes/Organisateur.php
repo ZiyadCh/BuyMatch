@@ -52,5 +52,7 @@ INSERT INTO matches (
             ':nbr_place'    => $nbr_place,
             ':statut'       => 'en attente'
         ]);
+        $match_id = $pdo->lastInsertId();
+        return $match_id;
     }
 }

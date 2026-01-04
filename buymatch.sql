@@ -50,6 +50,7 @@ CREATE TABLE `categorie` (
   `id` int(11) NOT NULL,
   `nom_cat` varchar(100) DEFAULT NULL,
   `match_id` int(11) DEFAULT NULL,
+  `prix` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `match_id` (`match_id`),
   CONSTRAINT `categorie_ibfk_1` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`)
@@ -78,8 +79,10 @@ CREATE TABLE `clients` (
   `comment_id` int(11) DEFAULT NULL,
   KEY `user_id` (`user_id`),
   KEY `ticket_id` (`ticket_id`),
+  KEY `comment_id` (`comment_id`),
   CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `clients_ibfk_2` FOREIGN KEY (`ticket_id`) REFERENCES `ticket` (`id`)
+  CONSTRAINT `clients_ibfk_2` FOREIGN KEY (`ticket_id`) REFERENCES `ticket` (`id`),
+  CONSTRAINT `clients_ibfk_3` FOREIGN KEY (`comment_id`) REFERENCES `commentaire` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -126,14 +129,18 @@ DROP TABLE IF EXISTS `matches`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `matches` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `equipe1` varchar(255) DEFAULT NULL,
   `equipe2` varchar(255) DEFAULT NULL,
+  `logo_equipe1` varchar(255) DEFAULT NULL,
+  `logo_equipe2` varchar(255) DEFAULT NULL,
+  `banner` varchar(500) DEFAULT NULL,
   `date_matche` datetime DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `categorie` varchar(50) DEFAULT NULL,
+  `nbr_place` int(11) DEFAULT NULL,
+  `statut` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,6 +149,8 @@ CREATE TABLE `matches` (
 
 LOCK TABLES `matches` WRITE;
 /*!40000 ALTER TABLE `matches` DISABLE KEYS */;
+INSERT INTO `matches` VALUES
+(1,'madrid','barcelona','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','https://1000logos.net/wp-content/uploads/2016/10/Barcelona-Logo.png','https://dmn-dallas-news-prod.cdn.arcpublishing.com/resizer/v2/YV4SFEYU7JDGDNAQPY6SXHNEEQ.jpg?auth=df31c224153ac3ff92bbe9f36d56c8306fb244bc5812684a5bac40e0cfdadc5b&quality=80&height=553&width=830&focal=2228,2575','2026-01-22 01:01:00','Brazil',2000,'en attente');
 /*!40000 ALTER TABLE `matches` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,6 +187,8 @@ CREATE TABLE `organisateur` (
 
 LOCK TABLES `organisateur` WRITE;
 /*!40000 ALTER TABLE `organisateur` DISABLE KEYS */;
+INSERT INTO `organisateur` VALUES
+(2);
 /*!40000 ALTER TABLE `organisateur` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,6 +202,7 @@ DROP TABLE IF EXISTS `ticket`;
 CREATE TABLE `ticket` (
   `id` int(11) NOT NULL,
   `match_id` int(11) DEFAULT NULL,
+  `statut` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `match_id` (`match_id`),
   CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`)
@@ -219,10 +231,10 @@ CREATE TABLE `users` (
   `prenom` varchar(50) DEFAULT NULL,
   `photo` varchar(255) DEFAULT NULL,
   `email` varchar(200) DEFAULT NULL,
-  `role` varchar(10) DEFAULT NULL,
+  `role` varchar(20) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,6 +243,9 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES
+(1,'qqt','qef','https://picsum.dev/800/600','saad@gmail.com','organisateur','$2y$12$H2u54T2uZqP/DvCovQWUkeNcis0yt5jmF9OFA6vIhwyVjh.mQuLZi'),
+(2,'age','ahmwd','https://picsum.dev/800/600','saatehd@gmail.com','organisateur','$2y$12$WB6i/hJ7QlnDCR7uIvS8LugNpprpFw.IkLkNxkLNaGgfGCBNqSM3i');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,4 +276,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-12-30 17:05:23
+-- Dump completed on 2026-01-04 15:10:43

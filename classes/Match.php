@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "../config/databases.php";
+require_once "../config/database.php";
 
 class matche extends connection {
 
