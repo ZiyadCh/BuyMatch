@@ -23,7 +23,8 @@ class  organisateur extends users
     date_matche,
     location,
     nbr_place,
-    statut
+    statut,organisateur_id
+
 ) VALUES (
     :equipe1,
     :equipe2,
@@ -33,7 +34,8 @@ class  organisateur extends users
     :date_matche,
     :location,
     :nbr_place,
-    :statut
+    :statut,
+    :id
 )";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
@@ -45,7 +47,8 @@ class  organisateur extends users
             ':date_matche'  => $date,
             ':location'     => $location,
             ':nbr_place'    => $nbr_place,
-            ':statut'       => 'en attente'
+            ':statut'       => 'en attente',
+            ':id'       => $_SESSION['id']
         ]);
         $match_id = $pdo->lastInsertId();
         return $match_id;

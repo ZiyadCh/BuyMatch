@@ -89,7 +89,6 @@
       min="10" 
       step="1" 
       placeholder="Ex: 50"
-      required
     >
   </div>
 
@@ -102,7 +101,6 @@
       min="10" 
       step="1" 
       placeholder="Ex: 150"
-      required
     >
   </div>
 

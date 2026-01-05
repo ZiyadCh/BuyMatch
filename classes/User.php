@@ -144,7 +144,7 @@ abstract class users extends connection
                     $_SESSION['id'] = $id;
                     $_SESSION['nom'] = $nom;
                     $_SESSION['prenom'] = $prenom;
-                    $_SESSION['role'] = 'organiateur';
+                    $_SESSION['role'] = 'organisateur';
                     header("location: ../pages/orga.home.php");
                     exit();
                 } elseif ($role == 'admin') {

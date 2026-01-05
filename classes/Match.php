@@ -73,7 +73,13 @@ class matche extends connection
     public function afficherMatch()
     {
         $pdo = $this->connect();
+        //changer query depending on admin or orga
+        if ($_SESSION['role'] == 'organisateur') {
+        $sql = "SELECT * FROM matches WHERE organisateur_id = ".$_SESSION['id']."";
+        }
+        else{
         $sql = "SELECT * FROM matches WHERE statut = 'en attente'";
+        }
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -109,18 +115,18 @@ class matche extends connection
               <p class='text-muted fw-bold' data-date='January 15, 2026'>" . $dateMatch . "</p>
               <p class='text-muted' data-location='Santiago Bernabéu, Madrid'>" . $location . "</p>
               
-<form action='validate_match.php' method='post'>
-    <input type='hidden' name='id' value= '" . $id . "'>
+            <form action='validate_match.php' method='post'>
+            <input type='hidden' name='id' value= '" . $id . "'>
               <button  class='admin btn book-ticket w-100 mt-4'>Accepter</button>
-</form>
-<form action='reject_match.php' method='post'>
-    <input type='hidden' name='id' value= '" . $id . "'>
-              <button class=' admin btn bg-danger  w-100 mt-4'>Rejecter</button>
-</form>
-<form action='' method='post'>
-    <input type='hidden' name='id' value= '" . $id . "'>
-              <button class='ach btn book-ticket w-100 mt-4'>Acheter Billet</button>
-</form>
+                </form>
+                <form action='reject_match.php' method='post'>
+                <input type='hidden' name='id' value= '" . $id . "'>
+                    <button class=' admin btn bg-danger  w-100 mt-4'>Rejecter</button>
+                    </form>
+                    <form action='' method='post'>
+                    <input type='hidden' name='id' value= '" . $id . "'>
+                    <button class='ach btn book-ticket w-100 mt-4'>Acheter Billet</button>
+                </form>
           <span class='badge status-badge'>" . $statut . "</span>
             </div>
           </div>
