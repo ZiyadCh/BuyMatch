@@ -15,14 +15,17 @@ class  admin extends users{
         ]);
     }
 
-
-
     public function bannUser(){
 
     }
 
-    public function acceptMatch(){
-
+    public function acceptMatch($id){
+     $pdo = $this->connect();   
+     $sql = "UPDATE matches set statut = 'validee' WHERE id = :id";
+     $stmt = $pdo->prepare($sql);
+     $stmt->execute([
+        ':id' => $id
+     ]);
     }
 
     public function refuserMatch(){

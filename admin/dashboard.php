@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once "../classes/Match.php";
+$matche = new matche(0,0,0,0,0);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -78,9 +80,13 @@ session_start();
     <!-- Main Content -->
     <div class="dashboard-content flex-grow-1">
         <h1 class="display-5 fw-bold mb-4">Page Administrateur</h1>
-        <h2 class="mb-4">Demandes de Matchs en Attente</h2>
+        <h2 class="mb-4">Demandes des Matchs</h2>
     </div>
-
+    <div class="">
+    <?php 
+    $matche->afficherMatch();
+    ?>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
