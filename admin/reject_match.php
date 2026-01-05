@@ -6,5 +6,6 @@ error_reporting(E_ALL);
 $id= $_POST['id'];
 $admin = new admin(0,0,0,0,0,0,0);
 $admin->refuserMatch($id);
-echo "aight";
+header("location:  dashboard.php");
+exit();
 ?>

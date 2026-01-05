@@ -118,8 +118,9 @@ class matche extends connection {
 </form>
 <form action='' method='post'>
     <input type='hidden' name='id' value= '".$id."'>
-              <button class='btn book-ticket w-100 mt-4'>Acheter Billet</button>
+              <button class='ach btn book-ticket w-100 mt-4'>Acheter Billet</button>
 </form>
+          <span class='badge status-badge'>".$statut."</span>
             </div>
           </div>
         </div>";

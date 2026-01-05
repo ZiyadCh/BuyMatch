@@ -15,6 +15,11 @@ $matche = new matche(0,0,0,0,0);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
+        .ach{
+            display: none;
+        }
+    </style>
+    <style>
         .sidebar {
             background: #111;
             min-height: 100vh;
