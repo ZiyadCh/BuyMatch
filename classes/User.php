@@ -137,18 +137,21 @@ abstract class users extends connection
                     $_SESSION['id'] = $id;
                     $_SESSION['nom'] = $nom;
                     $_SESSION['prenom'] = $prenom;
+                    $_SESSION['role'] = 'client';
                     header("location: ../pages/matchs.php");
                     exit();
                 } elseif ($role == 'organisateur') {
                     $_SESSION['id'] = $id;
                     $_SESSION['nom'] = $nom;
                     $_SESSION['prenom'] = $prenom;
+                    $_SESSION['role'] = 'organiateur';
                     header("location: ../pages/orga.home.php");
                     exit();
                 } elseif ($role == 'admin') {
                     $_SESSION['id'] = $id;
                     $_SESSION['nom'] = $nom;
                     $_SESSION['prenom'] = $prenom;
+                    $_SESSION['role'] = 'admin';
                     header("location: ../admin/dashboard.php");
                     exit();
                 }

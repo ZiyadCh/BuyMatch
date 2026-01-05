@@ -42,15 +42,13 @@ $match = new matche(0, 0, 0, 0, 0);
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item"><a class="nav-link" href="../index.php">Accueil</a></li>
-          <li class="nav-item"><a class="nav-link active" href="#">Mes Matchs</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Statistiques</a></li>
         </ul>
 
         <div class="dropdown">
           <a class="d-flex align-items-center text-decoration-none" href="profile.php">
             <img src=""
               alt="Profil" class="rounded-circle profile-avatar me-2">
-            <span class="text-light d-none d-sm-inline">username</span>
+            <span class="text-light d-none d-sm-inline"><?php echo $_SESSION['role'] ?></span>
           </a>
 
         </div>
