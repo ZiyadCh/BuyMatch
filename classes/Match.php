@@ -110,11 +110,15 @@ class matche extends connection {
               
 <form action='validate_match.php' method='post'>
     <input type='hidden' name='id' value= '".$id."'>
-              <button class='btn book-ticket w-100 mt-4'>Accepter</button>
+              <button  class='admin btn book-ticket w-100 mt-4'>Accepter</button>
 </form>
 <form action='reject_match.php' method='post'>
     <input type='hidden' name='id' value= '".$id."'>
-              <button class='btn bg-danger  w-100 mt-4'>Rejecter</button>
+              <button class=' admin btn bg-danger  w-100 mt-4'>Rejecter</button>
+</form>
+<form action='' method='post'>
+    <input type='hidden' name='id' value= '".$id."'>
+              <button class='btn book-ticket w-100 mt-4'>Acheter Billet</button>
 </form>
             </div>
           </div>

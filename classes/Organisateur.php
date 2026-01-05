@@ -18,11 +18,7 @@ class  organisateur extends users
     public function demanderMatch($userId, $equipe1, $equipe2, $logo1, $logo2, $banner, $date, $location, $nbr_place)
     {
         $pdo = $this->connect();
-        $sql = "
-INSERT INTO matches (
-    equipe1,
-    equipe2,
-    logo_equipe1,
+        $sql = "INSERT INTO matches (  equipe1,   equipe2,logo_equipe1,
     logo_equipe2,
     banner,
     date_matche,

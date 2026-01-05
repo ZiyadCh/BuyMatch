@@ -53,7 +53,8 @@
 
             <div class="mb-4">
                 <label for="role" class="form-label text-light fw-bold">Type de compte</label>
-                <select class="form-select form-select-lg" id="role" name="role" required>
+                <select class="form-select form-select-lg" id="role" name="role" >
+                    <option value="" disabled>--</option>
                     <option value="client" selected>client </option>
                     <option value="organisateur">organisateur </option>
                 </select>

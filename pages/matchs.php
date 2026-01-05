@@ -1,6 +1,7 @@
 <?php 
 session_start();
-echo $_SESSION['nom'];
+require_once "../classes/Match.php";
+$match = new matche(0,0,0,0,0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +19,11 @@ echo $_SESSION['nom'];
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="../assets/css/style.css">
-
+<style>
+  .admin{
+    display: none;
+  }
+</style>
 </head>
 <body>
 
@@ -59,29 +64,9 @@ echo $_SESSION['nom'];
 
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
         <!-- Match 1: Real Madrid vs Barcelona -->
-        <div class="col">
-          <div class="card match-card h-100">
-            <div class="match-banner">
-              <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/match-day-real-madrid-vs-barcelona-el-classic-design-template-740574d9dd3dac8024c5132959a38c2c_screen.jpg?ts=1722616259" alt="El Clasico Banner">
-            </div>
-            <div class="card-body text-center py-5">
-              <div class="d-flex align-items-center justify-content-center gap-4 mb-4">
-                <div class="text-center">
-                  <img src="https://www.nicepng.com/png/detail/245-2457966_tap-to-expand-real-madrid-is-logo-download.png" class="team-logo" alt="Real Madrid">
-                  <h5 class="mt-3 fw-bold" data-team1="Real Madrid">Real Madrid</h5>
-                </div>
-                <div class="vs-display"><span>VS</span></div>
-                <div class="text-center">
-                  <img src="https://www.nicepng.com/png/detail/139-1398411_free-png-barcelona-logo-png-images-transparent-fc.png" class="team-logo" alt="Barcelona">
-                  <h5 class="mt-3 fw-bold" data-team2="FC Barcelona">FC Barcelona</h5>
-                </div>
-              </div>
-              <p class="text-muted fw-bold" data-date="January 15, 2026">January 15, 2026</p>
-              <p class="text-muted" data-location="Santiago Bernabéu, Madrid">Santiago Bernabéu</p>
-              <button class="btn book-ticket w-100 mt-4">Buy Ticket</button>
-            </div>
-          </div>
-        </div>
+       <?php 
+       $match->afficherMatch();
+        ?>
 
         <!-- Match 2: Manchester United vs Liverpool -->
         <div class="col">

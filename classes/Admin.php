@@ -21,15 +21,20 @@ class  admin extends users{
 
     public function acceptMatch($id){
      $pdo = $this->connect();   
-     $sql = "UPDATE matches set statut = 'validee' WHERE id = :id";
+     $sql = "UPDATE matches set statut = 'validée' WHERE id = :id";
      $stmt = $pdo->prepare($sql);
      $stmt->execute([
         ':id' => $id
      ]);
     }
 
-    public function refuserMatch(){
-
+    public function refuserMatch($id){
+     $pdo = $this->connect();   
+     $sql = "UPDATE matches set statut = 'refusée' WHERE id = :id";
+     $stmt = $pdo->prepare($sql);
+     $stmt->execute([
+        ':id' => $id
+     ]);
     }
 
 }
