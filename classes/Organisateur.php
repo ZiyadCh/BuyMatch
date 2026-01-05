@@ -37,6 +37,7 @@ class  organisateur extends users
     :statut,
     :id
 )";
+        echo $_SESSION['id'];
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             ':equipe1'      => $equipe1,
