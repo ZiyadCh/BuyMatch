@@ -1,7 +1,9 @@
 <?php
 session_start();
 require_once "../classes/Match.php";
+require_once "../classes/Organisateur.php";
 $match = new matche(0, 0, 0, 0, 0);
+$orga = new organisateur(0, 0, 0, 0, 0,0,0);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -32,7 +34,6 @@ $match = new matche(0, 0, 0, 0, 0);
 <body>
 
 
-  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">BuyMatch</a>
@@ -56,13 +57,16 @@ $match = new matche(0, 0, 0, 0, 0);
     </div>
   </nav>
 
-  <!-- Main Content -->
   <div class="container container-main">
     <div class="text-center mb-5">
       <h1 class="display-5 fw-bold">Espace Organisateur</h1>
       <p>Welcome.</p>
+      </div>
+     <?php 
+     $orga->stats();
+      ?> 
+    </div>
 
-      <!-- Bouton Créer un Match -->
       <a href="create.match.php" class="btn btn-create btn-lg mt-3">
         <i class="bi bi-plus-circle me-2"></i> Créer un nouveau match
       </a>

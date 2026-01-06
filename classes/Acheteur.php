@@ -11,8 +11,21 @@ class  acheteur extends users{
             ':user_id' => $userId
         ]);
     }
-    public function acheterTicket(){
-
+    public function acheterTicket($match_id,$userId){
+        if ($_SESSION['is_logged'] == false) {
+            header("location: ../auth/login.php");
+            exit();
+        }
+        else{
+        $pdo = $this->connect();
+        $sql = "INSERT INTO ticket (match_id,user_id) VALUES (:match_id,:user_id)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ":match_id" => $match_id,
+            ":user_id" => $userId,
+        ]);
+        }
+        
     }
 
     public function afficherHistorique(){

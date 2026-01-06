@@ -29,4 +29,5 @@ $cat = new categorie(1,1,1,1,1);
 $cat->insertCategorie("Standard", $match_id, $_POST['price_standard']);
 $cat->insertCategorie("VIP", $match_id, $_POST['price_vip']);
 $cat->insertCategorie("Premium", $match_id, $_POST['price_premium']);
-
+header("location: ../pages/orga.home.php");
+exit();

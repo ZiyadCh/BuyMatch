@@ -54,4 +54,61 @@ class  organisateur extends users
         $match_id = $pdo->lastInsertId();
         return $match_id;
     }
+public function stats() {
+
+    $pdo = $this->connect();
+    //total des matches
+    $sqlTotal = "select count(matches.id) as total from matches where organisateur_id  = :id";
+    $stmt = $pdo->prepare($sqlTotal);
+      $stmt->execute([
+            ':id'       => $_SESSION['id']
+        ]);
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        echo "
+           <div class='row g-4 mb-5'>
+      <div class='col-md-3'>
+        <div class='stat-card'>
+          <div class='stat-number'>".$results['total']."</div>
+          <div class='stat-label'>Matchs créés</div>
+        </div>
+        </div>
+        ";
+        // matches validee
+    $sqlVerifie = "select count(matches.id) as total from matches where organisateur_id  = :id and statut = 'validee'";
+    $stmt = $pdo->prepare($sqlVerifie);
+      $stmt->execute([
+            ':id'       => $_SESSION['id']
+        ]);
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        echo "
+           <div class='row g-4 mb-5'>
+      <div class='col-md-3'>
+        <div class='stat-card'>
+          <div class='stat-number'>".$results['total']."</div>
+          <div class='stat-label'>Matchs validées</div>
+        </div>
+        </div>
+
+        ";
+
+    $sqlReject = "select count(matches.id) as total from matches where organisateur_id  = :id and statut = 'refusés'";
+    $stmt = $pdo->prepare($sqlReject);
+      $stmt->execute([
+            ':id'       => $_SESSION['id']
+        ]);
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        echo "
+           <div class='row g-4 mb-5'>
+      <div class='col-md-3'>
+        <div class='stat-card'>
+          <div class='stat-number'>".$results['total']."</div>
+          <div class='stat-label'>Matchs validées</div>
+        </div>
+        </div>
+
+        ";
+
+}
+
+
 }

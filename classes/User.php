@@ -138,6 +138,7 @@ abstract class users extends connection
                     $_SESSION['nom'] = $nom;
                     $_SESSION['prenom'] = $prenom;
                     $_SESSION['role'] = 'client';
+                    $_SESSION['is_logged'] = true;
                     header("location: ../pages/matchs.php");
                     exit();
                 } elseif ($role == 'organisateur') {
@@ -145,6 +146,7 @@ abstract class users extends connection
                     $_SESSION['nom'] = $nom;
                     $_SESSION['prenom'] = $prenom;
                     $_SESSION['role'] = 'organisateur';
+                    $_SESSION['is_logged'] = true;
                     header("location: ../pages/orga.home.php");
                     exit();
                 } elseif ($role == 'admin') {
@@ -152,6 +154,7 @@ abstract class users extends connection
                     $_SESSION['nom'] = $nom;
                     $_SESSION['prenom'] = $prenom;
                     $_SESSION['role'] = 'admin';
+                    $_SESSION['is_logged'] = true;
                     header("location: ../admin/dashboard.php");
                     exit();
                 }
