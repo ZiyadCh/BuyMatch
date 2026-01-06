@@ -45,20 +45,7 @@ class matche extends connection
         return $this->location;
     }
 
-    public function getCategorie($matchId){
-      $pdo = $this->connect();
-      $sqlCat= "select * from categorie where match_id = :id ";
-      $stmt = $pdo->prepare($sqlCat);
-      $stmt->execute([
-        ":id" => $matchId
-      ]);
-      $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      foreach ($results as $res) {
-      echo "
-          <option value='".$res['nom_cat']."'>".$res['nom_cat']." - ".$res['prix']." MAD</option>
-      ";
-      }
-    }
+   
     public function setId($id)
     {
         $this->id = $id;
@@ -142,9 +129,7 @@ class matche extends connection
                     <button class=' admin btn bg-danger  w-100 mt-4'>Rejecter</button>
                     </form>
                     <form action='../pages/buy_ticket.php' method='post'>
-          <select name='category' class='form-select mt-4'>
-                      ". $this->getCategorie($id) ." 
-        </select>
+
                     <input type='hidden' name='id' value= '" . $id . "'>
                     <button class='ach btn book-ticket w-100 mt-4'>Acheter Billet</button>
                 </form>
