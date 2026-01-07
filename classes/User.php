@@ -75,8 +75,7 @@ abstract class users extends connection
     ////////////////////////////////////
     //insert into mysql
     ///////////////////////////////////
-    public function signup()
-    {
+    public function signup(){
         $pdo = $this->connect();
         $sql = "select * from users where email = :email";
         $stmt = $this->connect()->prepare($sql);
@@ -135,6 +134,7 @@ abstract class users extends connection
                 if ($role == 'client') {
                     $_SESSION['id'] = $id;
                     $_SESSION['nom'] = $nom;
+                    $_SESSION['email'] = $emails;
                     $_SESSION['prenom'] = $prenom;
                     $_SESSION['role'] = 'client';
                     $_SESSION['is_logged'] = true;
