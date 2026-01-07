@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once "../config/database.php";
 abstract class users extends connection
 {
@@ -166,6 +165,17 @@ abstract class users extends connection
         }
     }
 
+    /////////////////////
     //gerer profile
-    public function modifierProfile() {}
+    /////////////////////
+    public function afficherProfile($id){
+        $sql = "select * from users where id = :email";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([
+            ':id' => $id
+        ]);
+    }
+    public function modifierProfile() {
+
+    }
 }

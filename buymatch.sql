@@ -36,6 +36,9 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES
+(10),
+(11);
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -47,14 +50,14 @@ DROP TABLE IF EXISTS `categorie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categorie` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_cat` varchar(100) DEFAULT NULL,
   `match_id` int(11) DEFAULT NULL,
   `prix` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `match_id` (`match_id`),
   CONSTRAINT `categorie_ibfk_1` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,6 +66,22 @@ CREATE TABLE `categorie` (
 
 LOCK TABLES `categorie` WRITE;
 /*!40000 ALTER TABLE `categorie` DISABLE KEYS */;
+INSERT INTO `categorie` VALUES
+(31,'Standard',19,100),
+(32,'VIP',19,200),
+(33,'Premium',19,300),
+(34,'Standard',20,200),
+(35,'VIP',20,400),
+(36,'Premium',20,500),
+(37,'Standard',21,200),
+(38,'VIP',21,400),
+(39,'Premium',21,500),
+(40,'Standard',22,200),
+(41,'VIP',22,400),
+(42,'Premium',22,500),
+(43,'Standard',23,2),
+(44,'VIP',23,2),
+(45,'Premium',23,2);
 /*!40000 ALTER TABLE `categorie` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,13 +96,15 @@ CREATE TABLE `clients` (
   `user_id` int(11) DEFAULT NULL,
   `ticket_id` int(11) DEFAULT NULL,
   `comment_id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `ticket_id` (`ticket_id`),
   KEY `comment_id` (`comment_id`),
   CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `clients_ibfk_2` FOREIGN KEY (`ticket_id`) REFERENCES `ticket` (`id`),
   CONSTRAINT `clients_ibfk_3` FOREIGN KEY (`comment_id`) REFERENCES `commentaire` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,6 +113,9 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
+INSERT INTO `clients` VALUES
+(16,NULL,NULL,5),
+(18,NULL,NULL,6);
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,8 +163,10 @@ CREATE TABLE `matches` (
   `location` varchar(255) DEFAULT NULL,
   `nbr_place` int(11) DEFAULT NULL,
   `statut` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `organisateur_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `organisateur_id` (`organisateur_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +176,11 @@ CREATE TABLE `matches` (
 LOCK TABLES `matches` WRITE;
 /*!40000 ALTER TABLE `matches` DISABLE KEYS */;
 INSERT INTO `matches` VALUES
-(1,'madrid','barcelona','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','https://1000logos.net/wp-content/uploads/2016/10/Barcelona-Logo.png','https://dmn-dallas-news-prod.cdn.arcpublishing.com/resizer/v2/YV4SFEYU7JDGDNAQPY6SXHNEEQ.jpg?auth=df31c224153ac3ff92bbe9f36d56c8306fb244bc5812684a5bac40e0cfdadc5b&quality=80&height=553&width=830&focal=2228,2575','2026-01-22 01:01:00','Brazil',2000,'en attente');
+(19,'barca','barca','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','0003-02-03 03:03:00','barac',1000,'validée',1),
+(20,'mardris','madrid','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','0002-02-02 02:02:00','EGYTPT',1000,'validée',1),
+(21,'mardris','madrid','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','0002-02-02 02:02:00','EGYTPT',1000,'en attente',1),
+(22,'mardris','madrid','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','0002-02-02 02:02:00','EGYTPT',1000,'en attente',1),
+(23,'qwd','wef','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','https://www.freeiconspng.com/uploads/real-madrid-logo-png-7.png','0001-01-11 01:11:00','wf',2,'validée',17);
 /*!40000 ALTER TABLE `matches` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,9 +206,11 @@ DROP TABLE IF EXISTS `organisateur`;
 /*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `organisateur` (
   `user_id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `organisateur_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,7 +220,7 @@ CREATE TABLE `organisateur` (
 LOCK TABLES `organisateur` WRITE;
 /*!40000 ALTER TABLE `organisateur` DISABLE KEYS */;
 INSERT INTO `organisateur` VALUES
-(2);
+(17,2);
 /*!40000 ALTER TABLE `organisateur` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,13 +232,14 @@ DROP TABLE IF EXISTS `ticket`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ticket` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `match_id` int(11) DEFAULT NULL,
-  `statut` varchar(10) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `categorie` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `match_id` (`match_id`),
   CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,6 +248,11 @@ CREATE TABLE `ticket` (
 
 LOCK TABLES `ticket` WRITE;
 /*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
+INSERT INTO `ticket` VALUES
+(20,20,18,NULL),
+(21,20,18,NULL),
+(22,20,18,NULL),
+(23,20,18,NULL);
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,7 +272,7 @@ CREATE TABLE `users` (
   `role` varchar(20) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -245,9 +283,27 @@ LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES
 (1,'qqt','qef','https://picsum.dev/800/600','saad@gmail.com','organisateur','$2y$12$H2u54T2uZqP/DvCovQWUkeNcis0yt5jmF9OFA6vIhwyVjh.mQuLZi'),
-(2,'age','ahmwd','https://picsum.dev/800/600','saatehd@gmail.com','organisateur','$2y$12$WB6i/hJ7QlnDCR7uIvS8LugNpprpFw.IkLkNxkLNaGgfGCBNqSM3i');
+(10,'cheto','ziyad',NULL,'ziyad@gnail','admin','$2y$12$Tlf1EsUI80jljns3cef.vuTSOQ7op3.78bmR9oTgGZazf7gPAXYUq'),
+(11,'cheto','ziyad',NULL,'ziyad@ggail','admin','$2y$12$ppvIaSE6cyRpEyCSnV9yveiBlO4wTZOIb3jRRGGTDX0BMONakyYXm'),
+(16,'mohsin','ahmed','https://picsum.dev/800/600','ahmed@g','client','$2y$12$peitRonw3xGCja43dUn/3ennljh9XiX9Usit3JQJu97D73hl/mCjq'),
+(17,'soufiane','soufiane','https://picsum.dev/800/600','soufiane@g','organisateur','$2y$12$jyFwlbbNLzaX4u3OXrLjK.C9vFl7V/Z83LSiegbXiQVkt3xnSu6OO'),
+(18,'osama','osama','https://picsum.dev/800/600','osama@g','client','$2y$12$uto9uBVDrRgwsN/BL8Itge8opPf68LVK4mQgp1hldnQWa8v1Yeare');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `utilisateur`
+--
+
+DROP TABLE IF EXISTS `utilisateur`;
+/*!50001 DROP VIEW IF EXISTS `utilisateur`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8mb4;
+/*!50001 CREATE VIEW `utilisateur` AS SELECT
+ 1 AS `id`,
+  1 AS `email`,
+  1 AS `role` */;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Final view structure for view `nombre_ticket_par_match`
@@ -266,6 +322,24 @@ UNLOCK TABLES;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `utilisateur`
+--
+
+/*!50001 DROP VIEW IF EXISTS `utilisateur`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb3 */;
+/*!50001 SET character_set_results     = utf8mb3 */;
+/*!50001 SET collation_connection      = utf8mb3_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `utilisateur` AS select `users`.`id` AS `id`,`users`.`email` AS `email`,`users`.`role` AS `role` from `users` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -276,4 +350,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-01-04 15:10:43
+-- Dump completed on 2026-01-06 16:41:32

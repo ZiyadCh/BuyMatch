@@ -9,7 +9,7 @@ $match = new matche(0, 0, 0, 0, 0);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daschboard</title>
+  <title>Notre matches</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -64,6 +64,18 @@ $match = new matche(0, 0, 0, 0, 0);
             echo "
           <a href='../auth/login.php' class='btn btn-login'>Login</a>
           <a href='../auth/register.php' class='btn btn-signup'>Sign Up</a>
+            ";
+          }
+          elseif ($_SESSION['is_logged']== true) {
+            echo "
+            <div class='dropdown'>
+          <a class='d-flex align-items-center text-decoration-none' href='profile.php'>
+            <img src=''
+              alt='Profil' class='rounded-circle profile-avatar me-2'>
+            <span class='text-light d-none d-sm-inline'>".  $_SESSION['role'] ."</span>
+          </a>
+
+        </div>
             ";
           }
           ?>
