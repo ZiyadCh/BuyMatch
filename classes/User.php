@@ -165,13 +165,6 @@ abstract class users extends connection
     /////////////////////
     //gerer profile
     /////////////////////
-    public function afficherProfile($id){
-        $sql = "select * from users where id = :email";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([
-            ':id' => $id
-        ]);
-    }
     public function modifierProfile() {
 
     }

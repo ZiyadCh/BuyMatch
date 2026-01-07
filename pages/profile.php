@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -62,31 +65,31 @@
 </nav>
 
 <div class="container" style="padding-top: 120px; max-width: 700px;">
-  <h1 class="text-center mb-5" style="font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: #00ff9d;">Modifier Profil</h1>
+  <h1 class="text-center mb-5" style="font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: #00ff9d;"><?= $_SESSION['email'] ?></h1>
 
   <div class="card p-4 p-md-5">
     <div class="text-center mb-4">
-      <img src="https://via.placeholder.com/150" alt="pfp" id="profile-preview">
+      <img src="<?=   $_SESSION['pfp'] ?>"via.placeholder.com/150" alt="pfp" id="profile-preview">
     </div>
 
-    <form action="#" method="POST">
+    <form action="../auth/modifier.php" method="POST">
       <div class="mb-4">
         <label class="form-label fw-bold">pfp</label>
-        <input type="url" class="form-control form-control-lg" name="profile_url" placeholder="https://example.com/ma-photo.jpg">
-      </div>
+        <input type="url" class="form-control form-control-lg" name="profile_url" value="<?= $_SESSION['pfp'] ?>">
 
+      </div>
       <div class="mb-4">
         <label class="form-label fw-bold">Prénom</label>
-        <input type="text" class="form-control form-control-lg" name="prenom" placeholder="Prénom">
+        <input type="text" class="form-control form-control-lg" name="prenom" value="<?=  $_SESSION['prenom'] ?>" placeholder="">
       </div>
 
       <div class="mb-4">
         <label class="form-label fw-bold">Nom</label>
-        <input type="text" class="form-control form-control-lg" name="nom" placeholder="Nom">
+        <input type="text" class="form-control form-control-lg" name="nom"  value="<?= $_SESSION['nom'] ?>">
       </div>
 
       <button type="submit" class="btn btn-create btn-lg w-100">Save</button>
-      <button type="submit" class="bg-danger btn btn-create btn-lg w-100">Disconnecter</button>
+      <a href="../auth/logout.php"  class="bg-danger btn btn-lg w-100">Disconnecter</a>
     </form>
 
   </div>
@@ -95,3 +98,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php 
+
+?>
