@@ -75,7 +75,8 @@ abstract class users extends connection
     ////////////////////////////////////
     //insert into mysql
     ///////////////////////////////////
-    public function signup(){
+    public function signup()
+    {
         $pdo = $this->connect();
         $sql = "select * from users where email = :email";
         $stmt = $this->connect()->prepare($sql);
@@ -108,14 +109,15 @@ abstract class users extends connection
         return $userId;
     }
 
-    public static function setSession($id,$nom,$prenom,$role,$email,$pfp){
-                    $_SESSION['id'] = $id;
-                    $_SESSION['nom'] = $nom;
-                    $_SESSION['email'] = $email;
-                    $_SESSION['prenom'] = $prenom;
-                    $_SESSION['role'] = 'client';
-                    $_SESSION['pfp'] = $pfp;
-                    $_SESSION['is_logged'] = true;
+    public static function setSession($id, $nom, $prenom, $role, $email, $pfp)
+    {
+        $_SESSION['id'] = $id;
+        $_SESSION['nom'] = $nom;
+        $_SESSION['email'] = $email;
+        $_SESSION['prenom'] = $prenom;
+        $_SESSION['role'] =$role;
+        $_SESSION['pfp'] = $pfp;
+        $_SESSION['is_logged'] = true;
     }
     //////////////////////
     //login
@@ -142,15 +144,15 @@ abstract class users extends connection
         if ($emailCheck === $email) {
             if (password_verify($passCheck, $pass)) {
                 if ($role == 'client') {
-                    $this::setSession($id,$nom,$prenom,'client',$email,$pfp);
+                    $this::setSession($id, $nom, $prenom, 'client', $email, $pfp);
                     header("location: ../pages/matchs.php");
                     exit();
                 } elseif ($role == 'organisateur') {
-                    $this::setSession($id,$nom,$prenom,'organisateur',$email,$pfp);
+                    $this::setSession($id, $nom, $prenom, 'organisateur', $email, $pfp);
                     header("location: ../pages/orga.home.php");
                     exit();
                 } elseif ($role == 'admin') {
-                    $this::setSession($id,$nom,$prenom,'admin',$email,$pfp);
+                    $this::setSession($id, $nom, $prenom, 'admin', $email, $pfp);
                     header("location: ../admin/dashboard.php");
                     exit();
                 }
@@ -165,7 +167,17 @@ abstract class users extends connection
     /////////////////////
     //gerer profile
     /////////////////////
-    public function modifierProfile() {
-
+    public function modifierProfile()
+    {
+        $pdo = $this->connect();
+        $sql = "UPDATE users SET  prenom = :prenom , nom = :nom , photo = :photo WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ":prenom" => $this->prenom,
+            ":nom" => $this->nom,
+            ":photo" => $this->photo,
+            ":id" => $this->id
+        ]);
+    $this::setSession($this->id,$this->nom,$this->prenom,$this->role,$this->email,$this->photo);
     }
 }

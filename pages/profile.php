@@ -75,7 +75,7 @@ session_start();
     <form action="../auth/modifier.php" method="POST">
       <div class="mb-4">
         <label class="form-label fw-bold">pfp</label>
-        <input type="url" class="form-control form-control-lg" name="profile_url" value="<?= $_SESSION['pfp'] ?>">
+        <input type="url" class="form-control form-control-lg" name="pfp" value="<?= $_SESSION['pfp'] ?>">
 
       </div>
       <div class="mb-4">
