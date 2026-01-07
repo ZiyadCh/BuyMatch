@@ -1,2 +1,2 @@
 .env
-config/email_config.php
+email_config.php
