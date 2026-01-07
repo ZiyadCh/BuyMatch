@@ -11,7 +11,7 @@ class EmailService
     
     public function __construct()
     {
-        $this->config = require '../config/email_config.php';
+        $this->config = require '../email_config.php';
         
         $this->mail = new PHPMailer(true);
         $this->configureSMTP();
