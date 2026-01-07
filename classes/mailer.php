@@ -34,7 +34,7 @@ class EmailService
         try {
             $this->mail->addAddress($userEmail, $userName);
             $this->mail->isHTML(true);
-            $this->mail->Subject = 'Confirmation d\'achat de ticket';
+            $this->mail->Subject = 'Ticket Buymatch';
             $this->mail->Body = '
                 <h1>Bonjour ' . htmlspecialchars($userName) . '!</h1>
                 <p>votre ticket</p>';

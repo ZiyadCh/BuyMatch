@@ -105,9 +105,18 @@ abstract class users extends connection
             throw new Exception("User insert failed");
         }
 
-        return (int)$userId;
+        return $userId;
     }
 
+    public static function setSession($id,$nom,$prenom,$role,$email,$pfp){
+                    $_SESSION['id'] = $id;
+                    $_SESSION['nom'] = $nom;
+                    $_SESSION['email'] = $email;
+                    $_SESSION['prenom'] = $prenom;
+                    $_SESSION['role'] = 'client';
+                    $_SESSION['pfp'] = $pfp;
+                    $_SESSION['is_logged'] = true;
+    }
     //////////////////////
     //login
     //////////////////////
@@ -122,38 +131,26 @@ abstract class users extends connection
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         foreach ($results as $row) {
             $id = $row['id'];
-            $emails = $row['email'];
+            $email = $row['email'];
             $role = $row['role'];
             $nom = $row['nom'];
+            $pfp = $row['photo'];
             $prenom = $row['prenom'];
             $pass = $row['password'];
         }
 
-        if ($emailCheck === $emails) {
+        if ($emailCheck === $email) {
             if (password_verify($passCheck, $pass)) {
                 if ($role == 'client') {
-                    $_SESSION['id'] = $id;
-                    $_SESSION['nom'] = $nom;
-                    $_SESSION['email'] = $emails;
-                    $_SESSION['prenom'] = $prenom;
-                    $_SESSION['role'] = 'client';
-                    $_SESSION['is_logged'] = true;
+                    $this::setSession($id,$nom,$prenom,'client',$email,$pfp);
                     header("location: ../pages/matchs.php");
                     exit();
                 } elseif ($role == 'organisateur') {
-                    $_SESSION['id'] = $id;
-                    $_SESSION['nom'] = $nom;
-                    $_SESSION['prenom'] = $prenom;
-                    $_SESSION['role'] = 'organisateur';
-                    $_SESSION['is_logged'] = true;
+                    $this::setSession($id,$nom,$prenom,'organisateur',$email,$pfp);
                     header("location: ../pages/orga.home.php");
                     exit();
                 } elseif ($role == 'admin') {
-                    $_SESSION['id'] = $id;
-                    $_SESSION['nom'] = $nom;
-                    $_SESSION['prenom'] = $prenom;
-                    $_SESSION['role'] = 'admin';
-                    $_SESSION['is_logged'] = true;
+                    $this::setSession($id,$nom,$prenom,'admin',$email,$pfp);
                     header("location: ../admin/dashboard.php");
                     exit();
                 }

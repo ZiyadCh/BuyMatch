@@ -104,7 +104,7 @@ CREATE TABLE `clients` (
   CONSTRAINT `clients_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `clients_ibfk_2` FOREIGN KEY (`ticket_id`) REFERENCES `ticket` (`id`),
   CONSTRAINT `clients_ibfk_3` FOREIGN KEY (`comment_id`) REFERENCES `commentaire` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,7 +115,8 @@ LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
 INSERT INTO `clients` VALUES
 (16,NULL,NULL,5),
-(18,NULL,NULL,6);
+(18,NULL,NULL,6),
+(19,NULL,NULL,7);
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,7 +240,7 @@ CREATE TABLE `ticket` (
   PRIMARY KEY (`id`),
   KEY `match_id` (`match_id`),
   CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,7 +253,20 @@ INSERT INTO `ticket` VALUES
 (20,20,18,NULL),
 (21,20,18,NULL),
 (22,20,18,NULL),
-(23,20,18,NULL);
+(23,20,18,NULL),
+(24,20,16,NULL),
+(25,20,16,NULL),
+(26,19,16,NULL),
+(27,19,16,NULL),
+(28,19,16,NULL),
+(29,20,16,NULL),
+(30,20,16,NULL),
+(31,19,19,NULL),
+(32,19,19,NULL),
+(33,19,19,NULL),
+(34,19,19,NULL),
+(35,23,19,NULL),
+(36,20,19,NULL);
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,8 +285,9 @@ CREATE TABLE `users` (
   `email` varchar(200) DEFAULT NULL,
   `role` varchar(20) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
+  `etat` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -282,12 +297,13 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES
-(1,'qqt','qef','https://picsum.dev/800/600','saad@gmail.com','organisateur','$2y$12$H2u54T2uZqP/DvCovQWUkeNcis0yt5jmF9OFA6vIhwyVjh.mQuLZi'),
-(10,'cheto','ziyad',NULL,'ziyad@gnail','admin','$2y$12$Tlf1EsUI80jljns3cef.vuTSOQ7op3.78bmR9oTgGZazf7gPAXYUq'),
-(11,'cheto','ziyad',NULL,'ziyad@ggail','admin','$2y$12$ppvIaSE6cyRpEyCSnV9yveiBlO4wTZOIb3jRRGGTDX0BMONakyYXm'),
-(16,'mohsin','ahmed','https://picsum.dev/800/600','ahmed@g','client','$2y$12$peitRonw3xGCja43dUn/3ennljh9XiX9Usit3JQJu97D73hl/mCjq'),
-(17,'soufiane','soufiane','https://picsum.dev/800/600','soufiane@g','organisateur','$2y$12$jyFwlbbNLzaX4u3OXrLjK.C9vFl7V/Z83LSiegbXiQVkt3xnSu6OO'),
-(18,'osama','osama','https://picsum.dev/800/600','osama@g','client','$2y$12$uto9uBVDrRgwsN/BL8Itge8opPf68LVK4mQgp1hldnQWa8v1Yeare');
+(1,'qqt','qef','https://picsum.dev/800/600','saad@gmail.com','organisateur','$2y$12$H2u54T2uZqP/DvCovQWUkeNcis0yt5jmF9OFA6vIhwyVjh.mQuLZi',NULL),
+(10,'cheto','ziyad',NULL,'ziyad@gnail','admin','$2y$12$Tlf1EsUI80jljns3cef.vuTSOQ7op3.78bmR9oTgGZazf7gPAXYUq',NULL),
+(11,'cheto','ziyad',NULL,'ziyad@ggail','admin','$2y$12$ppvIaSE6cyRpEyCSnV9yveiBlO4wTZOIb3jRRGGTDX0BMONakyYXm',NULL),
+(16,'mohsin','ahmed','https://picsum.dev/800/600','ahmed@g','client','$2y$12$peitRonw3xGCja43dUn/3ennljh9XiX9Usit3JQJu97D73hl/mCjq',NULL),
+(17,'soufiane','soufiane','https://picsum.dev/800/600','soufiane@g','organisateur','$2y$12$jyFwlbbNLzaX4u3OXrLjK.C9vFl7V/Z83LSiegbXiQVkt3xnSu6OO',NULL),
+(18,'osama','osama','https://picsum.dev/800/600','osama@g','client','$2y$12$uto9uBVDrRgwsN/BL8Itge8opPf68LVK4mQgp1hldnQWa8v1Yeare',NULL),
+(19,'Cheto','Ziyad','https://picsum.dev/800/600','chetoziyad@gmail.com','client','$2y$12$jffkcfMrLoWjO2/AsJ1hmuGlYm7bZX3k/esrzvC160pxaOjOuZPZe',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -350,4 +366,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-01-06 16:41:32
+-- Dump completed on 2026-01-07 11:15:54

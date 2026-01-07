@@ -5,6 +5,6 @@ return [
     'smtp_password' => 'YOUR_APP_PASSWORD_HERE', 
     'smtp_port' => 587,
     'smtp_from_email' => 'chetoziyad@gmail.com',
-    'smtp_from_name' => 'Ticket System'
+    'smtp_from_name' => 'Buymatch'
 ];
 ?>

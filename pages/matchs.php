@@ -70,9 +70,9 @@ $match = new matche(0, 0, 0, 0, 0);
             echo "
             <div class='dropdown'>
           <a class='d-flex align-items-center text-decoration-none' href='profile.php'>
-            <img src=''
+            <img src='".$_SESSION['pfp']."'
               alt='Profil' class='rounded-circle profile-avatar me-2'>
-            <span class='text-light d-none d-sm-inline'>".  $_SESSION['role'] ."</span>
+            <span class='text-light d-none d-sm-inline'>".  $_SESSION['prenom'] ."</span>
           </a>
 
         </div>
