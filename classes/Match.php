@@ -82,6 +82,7 @@ class matche extends connection
     } else {
       $sql = "SELECT * FROM matches WHERE statut = 'en attente'";
     }
+    //execute
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -96,7 +97,7 @@ class matche extends connection
       $location = $row['location'];
       $nbr = $row['nbr_place'];
       $statut = $row['statut'];
-
+//carte de matche
       echo "<div class='col'>
           <div class='card match-card h-100'>
             <div class='match-banner'>
@@ -129,14 +130,16 @@ class matche extends connection
                     <input type='hidden' name='id' value= '" . $id . "'>
                     <button class='ach btn book-ticket w-100 mt-4'>Acheter Billet</button>
                 </form>
+                  <form action='../pages/comments.php' method='post'>
+                    <input type='hidden' name='id' value= '" . $id . "'>
+                    <button class='ach btn book-ticket w-100 mt-4'>Commentaires</button>
+                </form>
           <span class='stat badge status-badge'>" . $statut . "</span>
             </div>
           </div>
         </div>";
     }
   }
-
-
 
   public function afficherCategories($mid)
   {
@@ -161,9 +164,9 @@ foreach ($results as $res) {
 echo "
   </select>
 </div>
-";
+";}
+
+  public function afficherComment() {
 
   }
-
-  public function afficherComment() {}
 }

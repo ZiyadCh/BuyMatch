@@ -59,6 +59,17 @@ class acheteur extends users
         }
     }
     
+    public function laisserCommentaire($mid,$cont) {
+        $pdo = $this->connect();
+        $sql = "INSERT INTO commentaire(client_id,match_id,content) VALUES(:uid,:mid,:content)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+           ":uid" => $this->id,
+           ":mid" => $mid,
+           ":content" =>  $cont
+        ]);
+        
+    }
+
     public function afficherHistorique() {}
-    public function laisserCommentaire() {}
 }
