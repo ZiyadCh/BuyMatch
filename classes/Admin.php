@@ -36,5 +36,26 @@ class  admin extends users{
      ]);
     }
 
+    public function afficherUsers(){
+        $pdo = $this->connect();
+       $sql = "SELECT id,nom,prenom,role,etat from users where role != 'admin'"; 
+       $stmt = $pdo->prepare($sql);
+       $stmt->execute();
+       $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+       foreach ($results as $res) {
+        echo "
+        <tr>
+            <td>".$res['id']."</td>
+            <td>".$res['nom']."</td>
+            <td>".$res['prenom']."</td>
+            <td>".$res['role']."</td>
+            <td>".$res['etat']."</td>
+            <td> <button>Bann</button> </td>
+            </tr>
+        ";
+       }
+
+    }
+
 }
 ?>

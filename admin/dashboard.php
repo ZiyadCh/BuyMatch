@@ -78,7 +78,7 @@ $matche = new matche(0,0,0,0,0);
         </div>
         <ul class="nav flex-column">
             <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
-            <li class="nav-item"> <a class="nav-link " href="#">Users</a></li>
+            <li class="nav-item"> <a class="nav-link " href="user_list.php">Users</a></li>
             <li class="nav-item"> <a class="nav-link " href="../auth/logout.php">Logout</a></li>
         </ul>
     </div>

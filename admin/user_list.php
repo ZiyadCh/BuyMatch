@@ -86,11 +86,24 @@ $admin = new admin(0,0,0,0,0,0,0);
     <!-- Main Content -->
     <div class="dashboard-content flex-grow-1">
         <h1 class="display-5 fw-bold mb-4">Page Administrateur</h1>
-        <h2 class="mb-4">Demandes des Matchs</h2>
+        <h2 class="mb-4">Lite des utilisateur</h2>
 <div class="d-flex flex-wrap justify-content-center">
+    <table class="table table-striped table-hover w-100">
+        <tr>
+            <th>id</th>
+            <th>nom</th>
+            <th>prenom</th>
+            <th>role</th>
+            <th>statut</th>
+            <th>action</th>
+        </tr>
+        <tbody>
+
     <?php 
-    $matche->afficherMatch();
+    $admin->afficherUsers();
     ?>
+        </tbody>
+    </table>
     </div>
     </div>
     
