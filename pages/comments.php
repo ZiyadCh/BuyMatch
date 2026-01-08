@@ -1,5 +1,7 @@
 <?php 
+require "../classes/Match.php";
 $mid = $_POST['id'];
+$match = new matche($mid,0,0,0,0);
 ?>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
@@ -10,7 +12,7 @@ $mid = $_POST['id'];
 				<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
 			</a>
 		</div>
-        <!-- single commetn -->
+        `<!-- single commetn -->
 		<div class="be-comment-content">
 			
         <!-- user -->
@@ -26,6 +28,7 @@ $mid = $_POST['id'];
 				Curabitur rutrum dolor gravida turpis tristique efficitur.
 			</p>
 		</div>
+        <?= $match->afficherComment() ?>
 </div>
 	<form action="../pages/laisser_comment.php" method="post" class="form-block">
 		<div class="row">

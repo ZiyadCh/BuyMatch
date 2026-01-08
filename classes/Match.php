@@ -97,7 +97,7 @@ class matche extends connection
       $location = $row['location'];
       $nbr = $row['nbr_place'];
       $statut = $row['statut'];
-//carte de matche
+      //carte de matche
       echo "<div class='col'>
           <div class='card match-card h-100'>
             <div class='match-banner'>
@@ -150,23 +150,51 @@ class matche extends connection
       ":match_id" => $mid
     ]);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-echo "
+    echo "
 <div class='mb-4'>
   <label class='form-label fw-bold fs-4'>Type de billet</label>
   <select class='form-select form-select-lg' name='categorie'>
 ";
-foreach ($results as $res) {
-    $cat  = $res['nom_cat'];
-    $prix = $res['prix'];
-    echo "<option name='cat' value='$cat'>$cat - $prix MAD</option>";
-}
+    foreach ($results as $res) {
+      $cat  = $res['nom_cat'];
+      $prix = $res['prix'];
+      echo "<option name='cat' value='$cat'>$cat - $prix MAD</option>";
+    }
 
-echo "
+    echo "
   </select>
 </div>
-";}
+";
+  }
 
-  public function afficherComment() {
+  public function afficherComment()
+  {
+    $pdo = $this->connect();
+    $sql = "SELECT  photo,prenom,nom,content from commentaire left join users on users.id = client_id where match_id = :mid ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+      ":mid" => $this->id
+    ]);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($results as $res ) {
+      echo " 
+<div class='be-comment'>
+		<div class='be-img-comment'>	
+			<a href='blog-detail-2.html'>
+				<img src='".$res['photo']."' alt='pfp' class='be-ava-comment'>
+			</a>
+		</div>
+		<div class='be-comment-content'>
+			
+				<span class='be-comment-name'>
+					<a href='blog-detail-2.html'>".$res['prenom']." ".$res['nom']."</a>
+					</span>
+				
 
+			<p class='be-comment-text'>".$res['content']."</p>
+		</div>
+</div>
+      ";
+   }
   }
 }
