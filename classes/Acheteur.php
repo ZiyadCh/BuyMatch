@@ -43,18 +43,18 @@ class acheteur extends users
     //////////////////////////
     // EMAIL  
     //////////////////////////
-    public function acheterTicket($match_id, $userId)
-    {
+    public function acheterTicket($match_id, $userId,$cat){
         if ($_SESSION['is_logged'] == false) {
             header("location: ../auth/login.php");
             exit();
         } else {
             $pdo = $this->connect();
-            $sql = "INSERT INTO ticket (match_id,user_id) VALUES (:match_id,:user_id)";
+            $sql = "INSERT INTO ticket (match_id,user_id,categorie) VALUES (:match_id,:user_id,:categorie)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
                 ":match_id" => $match_id,
                 ":user_id" => $userId,
+                ":categorie" => $cat
             ]);
         }
     }

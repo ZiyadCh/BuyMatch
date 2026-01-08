@@ -155,7 +155,7 @@ echo "
 foreach ($results as $res) {
     $cat  = $res['nom_cat'];
     $prix = $res['prix'];
-    echo "<option value='$cat'>$cat - $prix MAD</option>";
+    echo "<option name='cat' value='$cat'>$cat - $prix MAD</option>";
 }
 
 echo "

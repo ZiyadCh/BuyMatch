@@ -36,9 +36,10 @@ $match = new matche(0, 0, 0, 0, 0);
 
     <div class="card p-5" style="background: var(--card-bg); border-radius: 18px;">
       <form action="../pages/buy_ticket.php" method="POST">
+        <input type="hidden" name="id" value= "<?= $_POST['id'] ?>" >
 
         <?php
-        var_dump($_POST['']);
+        var_dump($_POST['id']);
         $match->afficherCategories($_POST['id']);
         ?>
 

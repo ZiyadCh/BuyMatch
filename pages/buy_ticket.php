@@ -5,12 +5,13 @@ error_reporting(E_ALL);
 require_once "../classes/Acheteur.php";
 $match_id = $_POST['id'];
 $user_id = $_SESSION['id'];
+$cat = $_POST['categorie'];
 $client = new acheteur(0,0,0,0,0,0,0);
 if ($client->countTickets($match_id,$user_id) >= 4) {
     echo "Vous avez depasser le nombre de ticket par match";
 } 
 else{
-$client->acheterTicket($match_id,$user_id);
+$client->acheterTicket($match_id,$user_id,$cat);
 header("Location:  ../pages/matchs.php");
 exit();
 }
