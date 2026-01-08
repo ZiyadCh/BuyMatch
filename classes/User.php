@@ -139,6 +139,11 @@ abstract class users extends connection
             $pfp = $row['photo'];
             $prenom = $row['prenom'];
             $pass = $row['password'];
+            $etat = $row['etat'];
+        }
+        if ($etat == 'banned') {
+            header("location: ../pages/banned.html");
+            exit();
         }
 
         if ($emailCheck === $email) {
