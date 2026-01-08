@@ -81,7 +81,6 @@ public function stats() {
         ]);
         $results = $stmt->fetch(PDO::FETCH_ASSOC);
         echo "
-           <div class='row g-4 mb-5'>
       <div class='col-md-3'>
         <div class='stat-card'>
           <div class='stat-number'>".$results['total']."</div>
@@ -98,12 +97,10 @@ public function stats() {
         ]);
         $results = $stmt->fetch(PDO::FETCH_ASSOC);
         echo "
-           <div class='row g-4 mb-5'>
       <div class='col-md-3'>
         <div class='stat-card'>
           <div class='stat-number'>".$results['total']."</div>
-          <div class='stat-label'>Matchs validées</div>
-        </div>
+          <div class='stat-label'>Matchs refusée</div>
         </div>
 
         ";

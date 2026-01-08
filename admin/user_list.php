@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once "../classes/Match.php";
-$matche = new matche(0,0,0,0,0);
+require_once "../classes/Admin.php";
+$admin = new admin(0,0,0,0,0,0,0);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
