@@ -28,8 +28,7 @@ class acheteur extends users
         return $result['count'];
     }
     
-    public function countTickets($matchId, $userId)
-    {
+    public function countTickets($matchId, $userId){
         $pdo = $this->connect();
         $sql = "SELECT COUNT(ticket.id) AS count FROM ticket WHERE match_id = :match_id AND user_id = :user_id";
         $stmt = $pdo->prepare($sql);
@@ -57,13 +56,6 @@ class acheteur extends users
                 ":match_id" => $match_id,
                 ":user_id" => $userId,
             ]);
-            
-            require_once 'mailer.php';
-            $emailService = new EmailService();
-            $emailService->sendTicketConfirmation(
-                $_SESSION['email'],
-                $_SESSION['nom'] . ' ' . $_SESSION['prenom']
-            );
         }
     }
     

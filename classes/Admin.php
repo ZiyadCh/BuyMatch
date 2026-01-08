@@ -5,8 +5,7 @@ require_once "User.php";
 
 class  admin extends users{
    
-    public function insertId($userId)
-    {
+    public function insertId($userId){
         $pdo = $this->connect();
         $sql = "INSERT INTO admin (user_id) VALUES (:user_id)";
         $stmt = $pdo->prepare($sql);
