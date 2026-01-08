@@ -98,7 +98,6 @@ $admin = new admin(0,0,0,0,0,0,0);
             <th>action</th>
         </tr>
         <tbody>
-
     <?php 
     $admin->afficherUsers();
     ?>

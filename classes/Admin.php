@@ -14,8 +14,13 @@ class  admin extends users{
         ]);
     }
 
-    public function bannUser(){
-
+    public function bannUser($id){
+     $pdo = $this->connect();   
+     $sql = "UPDATE users set etat = 'banned' WHERE id = :id";
+     $stmt = $pdo->prepare($sql);
+     $stmt->execute([
+        ':id' => $id
+     ]);
     }
 
     public function acceptMatch($id){
@@ -50,7 +55,11 @@ class  admin extends users{
             <td>".$res['prenom']."</td>
             <td>".$res['role']."</td>
             <td>".$res['etat']."</td>
-            <td> <button>Bann</button> </td>
+            <td>
+            <form action = 'ban.php' method= 'post'>
+            <input type='hidden' name='id' value='".$res['id']."'>
+            <button type = 'submit' >Bann</button> </td>
+</form>
             </tr>
         ";
        }
