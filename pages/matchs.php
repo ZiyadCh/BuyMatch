@@ -2,7 +2,6 @@
 session_start();
 require_once "../classes/Match.php";
 $match = new matche(0, 0, 0, 0, 0);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,7 +67,6 @@ $match = new matche(0, 0, 0, 0, 0);
               alt='Profil' class='rounded-circle profile-avatar me-2'>
             <span class='text-light d-none d-sm-inline'>".  $_SESSION['prenom'] ."</span>
           </a>
-
         </div>
             ";
             ?>
