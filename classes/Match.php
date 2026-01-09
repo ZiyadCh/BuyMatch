@@ -132,7 +132,7 @@ class matche extends connection
                 </form>
                   <form action='../pages/comments.php' method='post'>
                     <input type='hidden' name='id' value= '" . $id . "'>
-                    <button class='ach btn book-ticket w-100 mt-4'>Commentaires</button>
+                    <button class='btn book-ticket w-100 mt-4'>Commentaires</button>
                 </form>
           <span class='stat badge status-badge'>" . $statut . "</span>
             </div>

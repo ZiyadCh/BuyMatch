@@ -30,18 +30,25 @@ $match = new matche($mid,0,0,0,0);
 		</div>
         <?= $match->afficherComment() ?>
 </div>
-	<form action="../pages/laisser_comment.php" method="post" class="form-block">
-		<div class="row">
+    <?php 
+    if ($_SESSION['role'] == 'client') {
+        echo "
+<form action='../pages/laisser_comment.php' method='post' class='lc form-block'>
+		<div class='row'>
         <!-- type commenta -->
-			<div class="col-xs-12">									
-				<div class="form-group">
-					<textarea class="form-input"  name="cont" placeholder="Your text"></textarea>
-                    <input type="hidden" name="id" value="<?= $mid ?>">
+			<div class='col-xs-12'>									
+				<div class='form-group'>
+					<textarea class='form-input'  name='cont' placeholder='Your text'></textarea>
+                    <input type='hidden' name='id' value='" .$mid ."'>
 				</div>
 			</div>
-			<button class="btn btn-primary pull-right" type="submit">submit</button>
+			<button class='btn btn-primary pull-right' type='submit'>submit</button>
 		</div>
 	</form>
+        ";
+    }
+    ?>
+	
 </div>
 </div>
 <style>

@@ -39,7 +39,6 @@ $match = new matche(0, 0, 0, 0, 0);
         <input type="hidden" name="id" value= "<?= $_POST['id'] ?>" >
 
         <?php
-        var_dump($_POST['id']);
         $match->afficherCategories($_POST['id']);
         ?>
 
