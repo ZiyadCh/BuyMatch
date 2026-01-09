@@ -56,6 +56,7 @@ class acheteur extends users
                 ":user_id" => $userId,
                 ":categorie" => $cat
             ]);
+
         }
     }
     
