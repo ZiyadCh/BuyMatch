@@ -75,7 +75,10 @@ class matche extends connection
   {
     $pdo = $this->connect();
     //changer query depending on admin or orga
-    if ($_SESSION['role'] == 'organisateur') {
+    if ( !isset($_SESSION['role'])) {
+      $sql = "SELECT * FROM matches WHERE statut = 'validée'";
+    }
+    else if ($_SESSION['role'] == 'organisateur') {
       $sql = "SELECT * FROM matches WHERE organisateur_id = " . $_SESSION['id'] . "";
     } elseif ($_SESSION['role'] == 'client') {
       $sql = "SELECT * FROM matches WHERE statut = 'validée'";
