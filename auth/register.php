@@ -65,7 +65,7 @@
 
         <div class="text-center mt-4">
             <p class="text-muted">Déjà inscrit ? <a href="login.php" class="text-primary">Connectez-vous</a></p>
-            <a href="../index.php" class="text-muted"><i class="bi bi-arrow-left"></i> Retour à l'accueil</a>
+            <a href="../public/index.php" class="text-muted"><i class="bi bi-arrow-left"></i> Retour à l'accueil</a>
         </div>
     </div>
 

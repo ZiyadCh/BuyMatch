@@ -13,6 +13,9 @@ $client = new acheteur(0,0,0,0,0,0,0);
 if ($client->countTickets($match_id,$user_id) >= 4) {
     echo "Vous avez depasser le nombre de ticket par match";
 } 
+if ($client->countNbrPlace($match_id,$user_id) >= 4) {
+    echo "Vous avez depasser le nombre de ticket par match";
+} 
 else{
 $client->acheterTicket($match_id,$user_id,$cat);
 $pdf = new pdf();

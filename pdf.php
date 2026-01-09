@@ -4,57 +4,106 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
+require_once "mailer.php";
 require_once "config/database.php";
-require __DIR__ .'/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
+
 use Dompdf\Dompdf;
+use Dompdf\Options;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use Dotenv\Dotenv;
 
-class pdf extends connection{
-public function ticketPDF($mid){
-    $pdo = $this->connect();
-      $sql = "SELECT * FROM matches left join ticket on matches.id = ticket.match_id WHERE matches.id = " . $mid . "";
-    //execute
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-      $id = $row['id'];
-      $equipe1 = $row['equipe1'];
-      $equipe2 = $row['equipe2'];
-      $dateMatch = $row['date_matche'];
-      $location = $row['location'];
-      $cat = $row['categorie'];
+class pdf extends connection {
 
-$html = "<h1>       Ticket de buymatch   </h1>
-<h1>***********************************</h1>
-<div style='display : flex;'>
-<h3>nom: ".$_SESSION['nom']." </h3>
-<h3>prenom: ".$_SESSION['prenom']."</h3>
-<h2>Detail du match:</h2>
-</br>
-<table style='width : 100%'>
+    public function ticketPDF($mid) {
 
-    <tbody>
-<tr>
-    <td>".$equipe1."</td>
-    <td>VS</td>
-    <td>".$equipe2."</td>
-    <td>".$dateMatch."</td>
-    <td>".$location."</td>
-    </tr>
-    </tbody>
-    
-</table>
-</br>
-<strong>Catergorie:</strong>
-<p>".$cat."</p>
-</div>
-";
+        $pdo = $this->connect();
+        $sql = "SELECT * FROM matches 
+                LEFT JOIN ticket ON matches.id = ticket.match_id 
+                WHERE matches.id = " . $mid;
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$dompdf = new Dompdf;
+        $equipe1   = $row['equipe1'];
+        $equipe2   = $row['equipe2'];
+        $dateMatch = $row['date_matche'];
+        $location  = $row['location'];
+        $cat       = $row['categorie'];
 
-$dompdf->loadHtml($html);
-$dompdf->render();
-$dompdf->stream("ticket.pdf",["Attachement"  => 0]);
+        $html = "
+        <style>
+            body { font-family: DejaVu Sans, sans-serif; }
+            table { width: 100%; border-collapse: collapse; }
+            td { border: 1px solid #000; padding: 6px; text-align: center; }
+        </style>
+
+        <h1>Ticket de BuyMatch</h1>
+
+        <p>Nom: {$_SESSION['nom']}</p>
+        <p>Prénom: {$_SESSION['prenom']}</p>
+
+        <table>
+            <tr>
+                <td>$equipe1</td>
+                <td>VS</td>
+                <td>$equipe2</td>
+                <td>$dateMatch</td>
+                <td>$location</td>
+            </tr>
+        </table>
+
+        <p>Catégorie: $cat</p>
+        ";
+
+        $options = new Options();
+        $options->set('isRemoteEnabled', true);
+
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        $fileatt = $dompdf->output();
+        if (strlen($fileatt) < 1000) {
+    die('PDF generation failed or empty');
 }
-}
 
-?>
+        $dotenv = Dotenv::createImmutable(__DIR__);
+        $dotenv->load();
+
+        $username  = $_ENV['GMAIL_USERNAME'];
+        $password  = $_ENV['GMAIL_PASSWORD'];
+        $fromEmail = $_ENV['MAIL_FROM'];
+        $fromName  = $_ENV['MAIL_FROM_NAME'];
+
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = $username;
+        $mail->Password   = $password;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+
+    //Recipients
+    $mail->setFrom('BuyMatch@example.com', 'buymatch agent');
+    //reciever
+    $mail->addAddress('chetoziyad@gmail.com', 'Joe User');     //Add a recipient
+        $mail->addStringAttachment(
+            $fileatt,
+            'ticket.pdf',
+            'base64',
+            'application/pdf'
+        );
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Votre ticket BuyMatch';
+        $mail->Body    = 'Veuillez trouver votre ticket en pièce jointe.';
+        $mail->AltBody = 'Votre ticket est en pièce jointe.';
+
+        $mail->send();
+
+    }
+}

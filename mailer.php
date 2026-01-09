@@ -43,7 +43,6 @@ try {
     $mail->addBCC('bcc@example.com');
 
     //Attachments
-    $mail->addAttachment('buymatch.sql');         //Add attachments
    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
     //Content
@@ -54,7 +53,7 @@ try {
 
     $mail->send();
     echo 'Message has been sent';
-    header("location: pages/matchs.php");
+    header("location: matchs.php");
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }

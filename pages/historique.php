@@ -65,41 +65,21 @@ require_once "../classes/Acheteur.php";
 
 <!-- The dark container is for demonstration purposes. -->
 <!-- You would apply the .dark-mode-table class to your table within your site's dark theme. -->
-<div class="dark-mode-container">
-    <table class="dark-mode-table">
+<div class='dark-mode-container'>
+    <table class='dark-mode-table'>
         <thead>
             <tr>
-                <th scope="col">Commit ID</th>
-                <th scope="col">Branch</th>
-                <th scope="col">Message</th>
-                <th scope="col">Status</th>
+                <th scope='col'> Match  id</th>
+                <th scope='col'>categorie ticket</th>
+                <th scope='col'>prix</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><span class="code">a1b2c3d</span></td>
-                <td><span class="code">main</span></td>
-                <td>Fix critical login bug</td>
-                <td class="status-ok">Build OK</td>
-            </tr>
-            <tr>
-                <td><span class="code">e4f5g6h</span></td>
-                <td><span class="code">feature/new-dashboard</span></td>
-                <td>Add analytics widgets</td>
-                <td class="status-ok">Build OK</td>
-            </tr>
-            <tr>
-                <td><span class="code">i7j8k9l</span></td>
-                <td><span class="code">feature/new-dashboard</span></td>
-                <td>Refactor chart components</td>
-                <td class="status-failed">Build Failed</td>
-            </tr>
-            <tr>
-                <td><span class="code">m0n1o2p</span></td>
-                <td><span class="code">main</span></td>
-                <td>Update documentation links</td>
-                <td class="status-ok">Build OK</td>
-            </tr>
+            
+ <?php 
+ $acheteur = new acheteur($_SESSION['id'],0,0,0,0,0,0);
+ $acheteur->afficherHistorique();
+ ?>
         </tbody>
     </table>
 </div>

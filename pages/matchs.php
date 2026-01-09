@@ -59,15 +59,8 @@ $match = new matche(0, 0, 0, 0, 0);
         <ul class="navbar-nav mx-auto">
           <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
         </ul>
-        <div class="d-flex gap-3">
+
           <?php
-          if ($_SESSION['is_logged'] == false) {
-            echo "
-          <a href='../auth/login.php' class='btn btn-login'>Login</a>
-          <a href='../auth/register.php' class='btn btn-signup'>Sign Up</a>
-            ";
-          }
-          elseif ($_SESSION['is_logged']== true) {
             echo "
             <div class='dropdown'>
           <a class='d-flex align-items-center text-decoration-none' href='profile.php'>
@@ -78,8 +71,11 @@ $match = new matche(0, 0, 0, 0, 0);
 
         </div>
             ";
-          }
-          ?>
+            ?>
+        <div class="d-flex gap-3">
+          <form action="historique.php" method="post">
+            <button> historique d'achat </button>
+          </form>
         </div>
       </div>
     </div>

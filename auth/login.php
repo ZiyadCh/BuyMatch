@@ -30,7 +30,7 @@
     </form>
     <div class="text-center mt-4">
       <p class="text-muted">Pas de compte ? <a href="register.php" class="text-primary">Inscrivez-vous</a></p>
-      <a href="../index.php" class="text-muted"><i class="bi bi-arrow-left"></i> Retour à l'accueil</a>
+      <a href="../public/index.php" class="text-muted"><i class="bi bi-arrow-left"></i> Retour à l'accueil</a>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,4 +1,8 @@
 <?php
+
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -72,5 +76,23 @@ class acheteur extends users
         
     }
 
-    public function afficherHistorique() {}
+    public function afficherHistorique() {
+ $pdo = $this->connect();
+    $sql = "SELECT * FROM matches left join ticket on matches.id = ticket.match_id left join users on users.id = ticket.user_id  left join categorie on nom_cat = ticket.categorie  WHERE users.id = :id ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+      ":id" => $this->id
+    ]);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($results as $res) {
+    echo "
+<tr>
+                <td><span class='code'>".$res['match_id']."</span></td>
+                <td><span class='code'>".$res['nom_cat']."</span></td>
+                <td class='status-ok'>".$res['prix']."</td>
+            </tr>
+    ";
+    }
+    
+    }
 }
